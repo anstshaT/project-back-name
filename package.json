@@ -1,0 +1,29 @@
+{
+  "name": "project-back-name",
+  "version": "1.0.0",
+  "description": "",
+  "type": "module",
+  "main": "src/index.js",
+  "scripts": {
+    "lint": "eslint src/**/*.js",
+    "start": "node ./src/index.js",
+    "dev": "nodemon src/index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/anstshaT/project-back-name.git"
+  },
+  "keywords": [],
+  "author": "Anastasia Tabachnikova <nastiatab11@gmail.com>",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/anstshaT/project-back-name/issues"
+  },
+  "homepage": "https://github.com/anstshaT/project-back-name#readme",
+  "devDependencies": {
+    "@eslint/js": "^9.26.0",
+    "eslint": "^9.26.0",
+    "globals": "^16.1.0",
+    "nodemon": "^3.1.10"
+  }
+}
