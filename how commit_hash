@@ -1,0 +1,88 @@
+[33mcommit 204dbf96aeb61b1f25fb9976cb859e01e6c508d7[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32musercontroller[m[33m)[m
+Author: konyaev <konyaevd1995@gmail.com>
+Date:   Sat May 17 02:04:39 2025 +0300
+
+    add draft userController
+
+[33mcommit 1bff34ce6d1876a5a494c533dfa97bff020a344b[m[33m ([m[1;31morigin/main[m[33m, [m[1;31morigin/HEAD[m[33m, [m[1;32mmain[m[33m)[m
+Merge: c6ff195 6a6528c
+Author: Anastasiia Tabachnikova <nastiatab11@gmail.com>
+Date:   Fri May 16 23:17:19 2025 +0200
+
+    Merge pull request #13 from anstshaT/db
+    
+    connect db and create model
+
+[33mcommit 6a6528c6db0cef0188b6d519ad634729ebecbabc[m
+Merge: 8b5eff3 16c6edd
+Author: Anastasiia Tabachnikova <nastiatab11@gmail.com>
+Date:   Fri May 16 23:16:12 2025 +0200
+
+    Merge pull request #14 from anstshaT/anstshaT/userShema-addImport
+    
+    Update User.js
+
+[33mcommit 16c6eddc424f64823d1fb95c32399c6c9f55ed0c[m
+Author: Anastasiia Tabachnikova <nastiatab11@gmail.com>
+Date:   Fri May 16 23:15:17 2025 +0200
+
+    Update User.js
+
+[33mcommit 8b5eff381d15a004ce2f5fd0673923a4f16b3186[m
+Author: Anastasiia Tabachnikova <nastiatab11@gmail.com>
+Date:   Fri May 16 23:14:13 2025 +0200
+
+    Update initMongoDB.js
+    
+    fix import
+
+[33mcommit 0ebc6dc9eb2a656077f3ac5325c50b60fc2e21e1[m
+Author: Anastasia_S <sivokonanastasia1@gmail.com>
+Date:   Fri May 16 21:30:44 2025 +0300
+
+    connect db and create model
+
+[33mcommit c6ff195c3fcbd560fa7a8019ccb49eed09e149d0[m
+Merge: 66af97e d2a7835
+Author: Anastasiia Tabachnikova <nastiatab11@gmail.com>
+Date:   Fri May 16 20:01:50 2025 +0200
+
+    Merge pull request #12 from anstshaT/arina/utils-middlewares
+    
+    feat: add utils and middlewares for validation and error handling
+
+[33mcommit d2a7835cd8c280889f51dec15b34dcacd84ffbc6[m
+Author: Arina Kapitula <verhovskayarina@gmail.com>
+Date:   Fri May 16 20:48:30 2025 +0300
+
+    feat: add utils and middlewares for validation and error handling
+
+[33mcommit 66af97e40dc7781cfaf9d82f340fb3a17f864a4f[m
+Author: Anastasiia Tabachnikova <nastiatab11@gmail.com>
+Date:   Fri May 16 19:29:18 2025 +0200
+
+    Add files for db
+
+[33mcommit 291e541c23af35fea115f85d0e9b80cdad50ac5f[m
+Author: Anastasiia Tabachnikova <nastiatab11@gmail.com>
+Date:   Fri May 16 18:56:10 2025 +0200
+
+    Add files and npm packages
+
+[33mcommit 32c6bf205f98a30446df8b1877473887e4779e86[m
+Author: Anastasiia Tabachnikova <nastiatab11@gmail.com>
+Date:   Thu May 15 20:31:40 2025 +0200
+
+    try2
+
+[33mcommit 901801fe471b7ff2151ef2fa9309b4c9e38d46ed[m
+Author: Anastasiia Tabachnikova <nastiatab11@gmail.com>
+Date:   Thu May 15 20:30:00 2025 +0200
+
+    try
+
+[33mcommit 16b45826a2eb81fd1800e8224d17c6a7fa6d2581[m
+Author: Anastasiia Tabachnikova <nastiatab11@gmail.com>
+Date:   Thu May 15 20:28:03 2025 +0200
+
+    Add files
