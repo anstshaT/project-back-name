@@ -1,4 +1,4 @@
-import { registerValidationSchema } from '../../validation/auth/registerValidation.js';
+import { registerValidationSchema } from '../validation/auth/registerValidation.js';
 
 export const registerValidateBody = (req, res, next) => {
   const { error } = registerValidationSchema.validate(req.body);
