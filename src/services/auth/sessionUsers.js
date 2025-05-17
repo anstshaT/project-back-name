@@ -1,8 +1,8 @@
 import { randomBytes } from 'crypto';
 import createHttpError from 'http-errors';
 
-import { SessionCollection } from '../../db/models/Session';
-import { FIFTEEN_MINUTES, ONE_DAY } from '../../constants';
+import { SessionCollection } from '../../db/models/Session.js';
+import { FIFTEEN_MINUTES, ONE_DAY } from '../../constants.js';
 
 const createSession = () => {
   const accessToken = randomBytes(30).toString('base64');
