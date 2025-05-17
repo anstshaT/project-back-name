@@ -1,0 +1,23 @@
+post:
+    tags:
+      - Auth
+    summary: Реєстрація нового користувача
+    requestBody:
+      required: true
+      content:
+        application/json:
+          schema:
+            $ref: '../../components/schemas/register.yaml#/RegisterUserInput'
+    responses:
+      '201':
+        description: Користувача успішно зареєстровано
+        content:
+          application/json:
+            schema:
+              $ref: '../../components/schemas/register.yaml#/RegisterUserResponse'
+      '400':
+        description: Помилка валідації або email вже використовується
+        content:
+          application/json:
+            schema:
+              $ref: '../../components/schemas/register.yaml#/ErrorResponse'
