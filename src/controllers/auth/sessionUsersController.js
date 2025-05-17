@@ -1,5 +1,5 @@
-import { ONE_DAY } from '../../constants';
-import { refreshUsersSession } from '../../services/auth/sessionUsers';
+import { ONE_DAY } from '../../constants.js';
+import { refreshUsersSession } from '../../services/auth/sessionUsers.js';
 
 export const setupSession = (res, session) => {
   res.cookie('refreshToken', session.refreshToken, {
