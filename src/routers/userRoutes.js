@@ -1,9 +1,11 @@
-import express from 'express';
-import { registerController } from '../controllers/auth/registerController.js';
-import { registerValidateBody } from '../middlewares/registerValidateBody.js';
+import { Router } from 'express';
+// import { updateUserSchema } from '../validation/user.js';
+import { getUserByIdController } from '../controllers/users.js';
+// import { validateBody } from '../middlewares/validateBody.js';
+import { ctrlWrapper } from '../utils/ctrlWrapper.js';
 
-const router = express.Router();
+const userRouter = Router();
 
-router.post('/register', registerValidateBody, registerController);
+userRouter.get('/user/:userLoginId', ctrlWrapper(getUserByIdController));
 
-export default router;
+export default userRouter;
