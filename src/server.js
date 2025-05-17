@@ -1,14 +1,24 @@
-import express from 'express';
-import authRouter from './routers/userRoutes.js';
+import express from "express";
+import cors from "cors";
 
-import swaggerUi from 'swagger-ui-express';
-import YAML from 'yamljs';
-const swaggerDocument = YAML.load('./swagger/index.yaml');
 
-app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
-const app = express();
+import { logger } from "./middlewares/logger.js";
+import { notFoundHandler } from "./middlewares/notFoundHandler.js";
+import { errorHandler } from "./middlewares/errorHandler.js";
 
-app.use(express.json());
-app.use('/api/auth', authRouter);
 
-export default app;
+export const setupServer = () => {
+    const app = express();
+
+
+    app.use(cors());
+    app.use(express.json());
+    app.use(logger);
+
+    app.get("/auth");
+
+    app.use(notFoundHandler);
+    app.use(errorHandler);
+
+    return app;
+};

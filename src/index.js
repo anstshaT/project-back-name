@@ -1,14 +1,17 @@
-import mongoose from 'mongoose';
-import dotenv from 'dotenv';
-import app from './server.js';
+import { initMongoDB } from './db/initMongoDB.js';
+import { setupServer } from './server.js';
+import { getEnvVar } from './utils/getEnvVar.js';
+import 'dotenv/config';
 
-dotenv.config();
 
-mongoose.connect(process.env.MONGODB_URI)
-  .then(() => {
-    app.listen(3000, () => console.log('✅ Server running on http://localhost:3000'));
-  })
-  .catch(error => {
-    console.error('❌ DB connection error:', error.message);
-    process.exit(1);
-  });
+
+const bootstrap = async () => {
+  await initMongoDB();
+  const app = setupServer();
+  const port = Number(getEnvVar("PORT", 3000));
+  app.listen(port, ()=> console.log(`Server running on ${port} port`));
+
+};
+
+
+bootstrap();
