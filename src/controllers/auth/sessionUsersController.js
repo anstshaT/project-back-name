@@ -1,4 +1,4 @@
-import { ONE_DAY } from '../../constants.js';
+import { ONE_DAY } from '../../constants/index.js';
 import { refreshUsersSession } from '../../services/auth/sessionUsers.js';
 
 export const setupSession = (res, session) => {
