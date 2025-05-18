@@ -1,24 +1,23 @@
-import express from "express";
-import cors from "cors";
+import express from 'express';
+import cors from 'cors';
+import cookieParser from 'cookie-parser';
 
-
-import { logger } from "./middlewares/logger.js";
-import { notFoundHandler } from "./middlewares/notFoundHandler.js";
-import { errorHandler } from "./middlewares/errorHandler.js";
-
+import { logger } from './middlewares/logger.js';
+import { notFoundHandler } from './middlewares/notFoundHandler.js';
+import { errorHandler } from './middlewares/errorHandler.js';
 
 export const setupServer = () => {
-    const app = express();
+  const app = express();
+  app.use(cookieParser());
 
+  app.use(cors());
+  app.use(express.json());
+  app.use(logger);
 
-    app.use(cors());
-    app.use(express.json());
-    app.use(logger);
+  app.get('/auth');
 
-    app.get("/auth");
+  app.use(notFoundHandler);
+  app.use(errorHandler);
 
-    app.use(notFoundHandler);
-    app.use(errorHandler);
-
-    return app;
+  return app;
 };
