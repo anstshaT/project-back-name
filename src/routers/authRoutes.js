@@ -7,6 +7,7 @@ import { loginUserSchema} from '../validation/auth/loginUser.js';
 import { loginUserController } from '../controllers/auth/loginUserController.js';
 import { refreshUserSessionController } from '../controllers/auth/refreshUserSessionController.js';
 import { logoutUserController } from '../controllers/auth/logoutUserController.js';
+import { authenticate } from '../middlewares/authenticate.js';
 
 const authRouter = Router();
 
@@ -24,6 +25,6 @@ authRouter.post(
 
 authRouter.post('/refresh-session', refreshUserSessionController);
 
-authRouter.post('/logout', ctrlWrapper(logoutUserController));
+authRouter.post('/logout', authenticate, ctrlWrapper(logoutUserController));
 
 export default authRouter;
