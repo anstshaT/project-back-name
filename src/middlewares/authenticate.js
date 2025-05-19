@@ -6,17 +6,17 @@ export const authenticate = async (req, res, next) => {
   try {
     let session;
 
-    // Спроба взяти sessionId з cookie
     const sessionId = req.cookies.sessionId;
 
     if (sessionId) {
       session = await SessionCollection.findById(sessionId);
     } else {
-      // Якщо cookie немає — пробуємо з Authorization Bearer
       const authHeader = req.headers.authorization || '';
+
       if (!authHeader.startsWith('Bearer ')) {
         throw createHttpError(401, 'No session ID or Authorization header');
       }
+
       const accessToken = authHeader.replace('Bearer ', '').trim();
 
       session = await SessionCollection.findOne({ accessToken });
