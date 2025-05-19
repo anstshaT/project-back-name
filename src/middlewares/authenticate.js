@@ -4,26 +4,30 @@ import UsersCollection from '../db/models/User.js';
 
 export const authenticate = async (req, res, next) => {
   try {
-    let session;
+    let session = null;
 
+    const authHeader = req.headers.authorization || '';
     const sessionId = req.cookies.sessionId;
 
-    if (sessionId) {
-      session = await SessionCollection.findById(sessionId);
-    } else {
-      const authHeader = req.headers.authorization || '';
-
-      if (!authHeader.startsWith('Bearer ')) {
-        throw createHttpError(401, 'No session ID or Authorization header');
-      }
-
+    if (authHeader.startsWith('Bearer ')) {
       const accessToken = authHeader.replace('Bearer ', '').trim();
+      console.log('Access Token:', accessToken);
 
       session = await SessionCollection.findOne({ accessToken });
+      console.log('Session by token:', session);
+    } else if (sessionId) {
+      session = await SessionCollection.findById(sessionId);
+      console.log('Session by ID:', session);
+    } else {
+      throw createHttpError(401, 'No token or session ID provided');
     }
 
-    if (!session || session.accessTokenValidUntil < new Date()) {
-      throw createHttpError(401, 'Invalid or expired session or token');
+    if (!session) {
+      throw createHttpError(401, 'Session not found');
+    }
+
+    if (session.accessTokenValidUntil < new Date()) {
+      throw createHttpError(401, 'Access token expired');
     }
 
     const user = await UsersCollection.findById(session.userId).select(
