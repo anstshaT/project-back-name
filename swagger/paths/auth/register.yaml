@@ -1,23 +1,43 @@
-post:
-    tags:
-      - Auth
-    summary: Реєстрація нового користувача
-    requestBody:
-      required: true
-      content:
-        application/json:
-          schema:
-            $ref: '../../components/schemas/register.yaml#/RegisterUserInput'
-    responses:
-      '201':
-        description: Користувача успішно зареєстровано
-        content:
-          application/json:
-            schema:
-              $ref: '../../components/schemas/register.yaml#/RegisterUserResponse'
-      '400':
-        description: Помилка валідації або email вже використовується
-        content:
-          application/json:
-            schema:
-              $ref: '../../components/schemas/register.yaml#/ErrorResponse'
+tags:
+  - Auth
+summary: Register a new user
+operationId: registerUser
+description: 'Register a new user'
+security:
+  - bearerAuth: []
+requestBody:
+  content:
+    application/json:
+      schema:
+        type: object
+        required:
+          - name
+          - email
+          - password
+        properties:
+          name:
+            type: string
+            example: 'Anna'
+          email:
+            type: string
+            example: 'anna@mail.com'
+          password:
+            type: string
+            example: '1QSET9xad'
+responses:
+  '201':
+    description: User registered successfully
+    content:
+      application/json:
+        schema:
+          required:
+            - message
+            - user
+          properties:
+            message:
+              type: string
+              example: 'User registered successfully'
+            user:
+              $ref: ../../components/schemas/user.yaml
+  '409':
+    $ref: ../../components/responses/auth/409.yaml

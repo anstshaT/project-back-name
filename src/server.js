@@ -7,7 +7,7 @@ import { notFoundHandler } from './middlewares/notFoundHandler.js';
 import { errorHandler } from './middlewares/errorHandler.js';
 import router from './routers/index.js';
 
-/* import { swaggerDocs } from './middlewares/swaggerDocs.js'; */
+import { swaggerDocs } from './middlewares/swaggerDocs.js';
 
 export const setupServer = () => {
   const app = express();
@@ -21,7 +21,7 @@ export const setupServer = () => {
 
   app.get('/auth');
 
-  /*  app.use('/api-docs', swaggerDocs()); */
+  app.use('/api-docs', swaggerDocs());
 
   app.use(notFoundHandler);
   app.use(errorHandler);

@@ -22,17 +22,23 @@ servers:
   - url: https://moneyguard-app.onrender.com
 paths:
   /auth/login:
-    $ref: ../swagger/paths/auth/login.yaml
+    post:
+      $ref: ../swagger/paths/auth/login.yaml
   /auth/logout:
-    $ref: ../swagger/paths/auth/logout.yaml
+    post:
+      $ref: ../swagger/paths/auth/logout.yaml
   /auth/register:
-    $ref: ../swagger/paths/auth/register.yaml
+    post:
+      $ref: ../swagger/paths/auth/register.yaml
   /auth/refresh-session:
-    $ref: ../swagger/paths/auth/refresh-session.yaml
+    post:
+      $ref: ../swagger/paths/auth/refresh-session.yaml
   /users/me:
-    $ref: ../swagger/paths/user/get.yaml
+    get:
+      $ref: ../swagger/paths/user/get.yaml
   /users/user/update/{userId}:
-    $ref: ../swagger/paths/user/patch.yaml
+    patch:
+      $ref: ../swagger/paths/user/patch.yaml
 components:
   securitySchemes:
     bearerAuth:

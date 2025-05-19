@@ -1,0 +1,14 @@
+tags:
+  - User
+summary: Get current users information
+operationId: editUser
+description: 'Get current users information'
+security:
+  - bearerAuth: []
+parameters:
+  - in: path
+    name: userId
+    required: true
+    schema:
+      type: string
+      example: '680fb1a9311824996bbaf348'

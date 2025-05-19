@@ -1,0 +1,7 @@
+tags:
+  - User
+summary: Get current users information
+operationId: getUser
+description: 'Get current users information'
+security:
+  - bearerAuth: []
