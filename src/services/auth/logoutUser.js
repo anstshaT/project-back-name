@@ -1,4 +1,4 @@
-import { SessionsCollection } from '../db/models/Session.js';
+import { SessionsCollection } from '../../db/models/Session.js';
 
 export const logoutUser = async (sessionId) => {
   await SessionsCollection.deleteOne({ _id: sessionId });
