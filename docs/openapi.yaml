@@ -1,0 +1,40 @@
+openapi: 3.1.0
+info:
+  version: 1.0.0
+  title: Money Guard
+  license:
+    name: Apache 2.0
+    url: http://www.apache.org/licenses/LICENSE-2.0.html
+  description:
+    Money Guard is a personal finance tracking application. It allows users to create, edit, and view transactions,
+    analyze statistics, and check their current balance. The app uses secure authentication with JWT tokens.
+tags:
+  - name: Auth
+    description: User registration, login, token refresh, and logout functionality
+  - name: Transactions
+    description: Creating, editing, deleting, and retrieving financial transactions
+  - name: User
+    description: Retrieving user information and account balance
+  - name: Currency
+    description: Fetching current exchange rates from the Monobank API
+servers:
+  - url: http://localhost:3000
+  - url: https://moneyguard-app.onrender.com
+paths:
+  /auth/login:
+    $ref: ../swagger/paths/auth/login.yaml
+  /auth/logout:
+    $ref: ../swagger/paths/auth/logout.yaml
+  /auth/register:
+    $ref: ../swagger/paths/auth/register.yaml
+  /auth/refresh-session:
+    $ref: ../swagger/paths/auth/refresh-session.yaml
+  /users/me:
+    $ref: ../swagger/paths/user/get.yaml
+  /users/user/update/{userId}:
+    $ref: ../swagger/paths/user/patch.yaml
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
