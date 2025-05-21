@@ -12,3 +12,37 @@ parameters:
     schema:
       type: string
       example: '680fb1a9311824996bbaf348'
+requestBody:
+  required: true
+  content:
+    application/json:
+      schema:
+        type: object
+        properties:
+          name:
+            type: string
+            example: 'Maria'
+responses:
+  '200':
+    description: Successfully patched a user
+    content:
+      application/json:
+        schema:
+          required:
+            - status
+            - message
+            - data
+          properties:
+            status:
+              type: integer
+              example: 200
+            message:
+              type: string
+              example: Successfully patched a user
+            data:
+              type: object
+              $ref: ../../components/schemas/user.yaml
+  '401':
+    $ref: ../../components/responses/auth/401-session.yaml
+  '404':
+    $ref: ../../components/responses/404.yaml
