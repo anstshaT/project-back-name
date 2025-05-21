@@ -22,5 +22,4 @@ content:
             message:
               type: string
               enum:
-                - Session not found
                 - Session token expired
