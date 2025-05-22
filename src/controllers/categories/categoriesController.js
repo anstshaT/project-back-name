@@ -1,23 +1,14 @@
-import { Category } from '../../models/categoryModel.js';
+import { getCategoriesService } from '../../services/categories.js';
 
-export const getCategories = async (req, res, next) => {
+export const getCategoriesController = async (req, res, next) => {
     try {
-        const categories = await Category.find({});
+        const categories = await getCategoriesService();
 
-        const result = {
-            incomes: [],
-            expenses: [],
-        };
-
-        for (const category of categories) {
-            if (category.type === 'income') {
-                result.incomes.push(category.name);
-            } else if (category.type === 'expense') {
-                result.expenses.push(category.name);
-            }
-        }
-
-        res.json(result);
+        res.status(200).json({
+            status: 200,
+            message: 'Categories fetched successfully',
+            data: categories,
+        });
     } catch (error) {
         next(error);
     }
