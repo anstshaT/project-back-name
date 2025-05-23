@@ -1,4 +1,5 @@
 import mongoose from 'mongoose';
+import { handlerSaveError } from './hooks.js';
 
 const { Schema, model } = mongoose;
 
@@ -21,8 +22,9 @@ const transactionSchema = new Schema(
       min: 0.01,
     },
     date: {
-      type: Date,
-      default: Date.now,
+      type: String,
+      required: true,
+      default: () => new Date().toISOString().split('T')[0],
     },
     comment: {
       type: String,
@@ -38,5 +40,7 @@ const transactionSchema = new Schema(
     timestamps: true,
   },
 );
+
+transactionSchema.post('save', handlerSaveError);
 
 export const TransactionsCollection = model('transaction', transactionSchema);
