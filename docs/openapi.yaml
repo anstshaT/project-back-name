@@ -20,8 +20,8 @@ tags:
   - name: Categories
     description: Viewing predefined income and expense categories
 servers:
-  - url: http://localhost:3000
   - url: https://moneyguard-app.onrender.com
+  - url: http://localhost:3000
 paths:
   /auth/login:
     post:
@@ -44,6 +44,9 @@ paths:
   /categories:
     get:
       $ref: ../swagger/paths/categories/get.yaml
+  /summary/:period:
+    get:
+      $ref: ../swagger/paths/summery/get.yaml
 components:
   securitySchemes:
     bearerAuth:

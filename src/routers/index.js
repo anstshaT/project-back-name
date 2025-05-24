@@ -9,6 +9,6 @@ router.use('/auth', authRouter);
 router.use('/users', userRouter);
 router.use('/categories', categoriesRouter);
 // router.use('/services', summaryRouter);
-router.use('/transactions', summaryRouter);
+router.use('/summary', summaryRouter);
 
 export default router;
