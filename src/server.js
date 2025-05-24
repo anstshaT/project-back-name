@@ -8,6 +8,7 @@ import { errorHandler } from './middlewares/errorHandler.js';
 import router from './routers/index.js';
 
 import { swaggerDocs } from './middlewares/swaggerDocs.js';
+import transactionRouter from './routers/transactionRoutes.js';
 
 export const setupServer = () => {
   const app = express();
@@ -15,11 +16,13 @@ export const setupServer = () => {
 
   app.use(cors());
   app.use(express.json());
-  app.use(logger);
+  // app.use(logger);
 
   app.use(router);
 
   app.get('/auth');
+
+  app.use('/transactions', transactionRouter);
 
   app.use('/api-docs', swaggerDocs());
 
