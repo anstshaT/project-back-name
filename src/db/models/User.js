@@ -15,6 +15,10 @@ const usersSchema = new Schema(
       type: String,
       required: true,
     },
+    balance: {
+      type: String,
+      required: true,
+    },
   },
   {
     timestamps: true,
