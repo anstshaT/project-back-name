@@ -4,19 +4,22 @@ import { validateBody } from '../middlewares/validateBody.js';
 import {
   addTransactionsController,
   addUserIdToBody,
-  getTransactionByIdController,
   getTransactionsController,
 } from '../controllers/transactions/transactions.js';
 import { tansactionAddSchema } from '../validation/tansaction/tansaction.js';
+import { authenticate } from '../middlewares/authenticate.js';
 
 const transactionRouter = Router();
 
-transactionRouter.get('/', ctrlWrapper(getTransactionsController));
-
-transactionRouter.get('/:id', ctrlWrapper(getTransactionByIdController));
+transactionRouter.get(
+  '/',
+  authenticate,
+  ctrlWrapper(getTransactionsController),
+);
 
 transactionRouter.post(
   '/',
+  authenticate,
   addUserIdToBody,
   validateBody(tansactionAddSchema),
   ctrlWrapper(addTransactionsController),

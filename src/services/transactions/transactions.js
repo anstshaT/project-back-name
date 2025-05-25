@@ -1,9 +1,23 @@
+import { Category } from '../../db/models/Categories.js';
 import { TransactionsCollection } from '../../db/models/transaction.js';
 
-export const getTransactions = () => TransactionsCollection.find();
+export const getTransactions = (userId) =>
+  TransactionsCollection.find({ userId }).populate({
+    path: 'categoryId',
+    select: 'name _id',
+  });
 
-export const getTransactionsById = (id) =>
-  TransactionsCollection.findOne({ _id: id });
+export const addTransactions = async (payload) => {
+  const categoryExists = await Category.exists({
+    _id: payload.categoryId,
+  });
+  if (!categoryExists) {
+    throw new Error('Category not found');
+  }
 
-export const addTransactions = (payload) =>
-  TransactionsCollection.create(payload);
+  const newTransaction = await TransactionsCollection.create(payload);
+  return await TransactionsCollection.findById(newTransaction._id).populate({
+    path: 'categoryId',
+    select: 'name _id type',
+  });
+};

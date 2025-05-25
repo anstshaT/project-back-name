@@ -2,30 +2,25 @@ import createHttpError from 'http-errors';
 import {
   addTransactions,
   getTransactions,
-  getTransactionsById,
 } from '../../services/transactions/transactions.js';
+import { updateUserBalance } from '../../services/transactions/udateBalanse.js';
 
 export const getTransactionsController = async (req, res) => {
-  const data = await getTransactions();
+  const userId = req.user._id;
+  const transactions = await getTransactions(userId);
+
+  const data = transactions.map((tx) => {
+    const categoryName = tx.categoryId?.name || null;
+
+    return {
+      ...tx.toObject(),
+      categories: categoryName,
+    };
+  });
 
   res.json({
     status: 200,
     message: 'Successfully find transactions',
-    data,
-  });
-};
-
-export const getTransactionByIdController = async (req, res) => {
-  const { id } = req.params;
-  const data = await getTransactionsById(id);
-
-  if (!data) {
-    throw createHttpError(404, `Transaction with id =${id} not find`);
-  }
-
-  res.json({
-    status: 200,
-    message: `Successfully find transactions with id =${id}`,
     data,
   });
 };
@@ -42,6 +37,7 @@ export const addUserIdToBody = (req, res, next) => {
 
 export const addTransactionsController = async (req, res) => {
   const data = await addTransactions(req.body);
+  await updateUserBalance(req.body.userId);
 
   res.status(201).json({
     status: 201,
