@@ -1,10 +1,8 @@
-import express from 'express';
+import { Router } from 'express';
 import { ctrlWrapper } from '../utils/ctrlWrapper.js';
 import {
-  getSummaryController,
   updateTransactionController,
   deleteTransactionController,
-  addTransactionController,
 } from '../controllers/transactionsController.js';
 import { authenticate } from '../middlewares/authenticate.js';
 import { validateParams } from '../middlewares/validateParams.js';
@@ -17,24 +15,13 @@ import {
   addUserIdToBody,
   getTransactionsController,
 } from '../controllers/transactions/transactions.js';
-import { tansactionAddSchema } from '../validation/tansaction/tansaction.js';
 
-const router = express.Router();
 const transactionRouter = Router();
-
-router.get('/summary/:period', authenticate, getSummaryController);
 
 transactionRouter.get(
   '/',
   authenticate,
   ctrlWrapper(getTransactionsController),
-);
-
-router.post(
-  '/',
-  authenticate,
-  validateBody(updateTransactionSchema),
-  ctrlWrapper(addTransactionController),
 );
 
 transactionRouter.post(
@@ -45,7 +32,7 @@ transactionRouter.post(
   ctrlWrapper(addTransactionsController),
 );
 
-router.patch(
+transactionRouter.patch(
   '/:id',
   authenticate,
   validateParams(transactionIdParamSchema),
@@ -53,7 +40,7 @@ router.patch(
   ctrlWrapper(updateTransactionController),
 );
 
-router.delete(
+transactionRouter.delete(
   '/:id',
   authenticate,
   validateParams(transactionIdParamSchema),
