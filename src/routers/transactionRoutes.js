@@ -4,6 +4,7 @@ import {
   getSummaryController,
   updateTransactionController,
   deleteTransactionController,
+  addTransactionController,
 } from '../controllers/transactionsController.js';
 import { authenticate } from '../middlewares/authenticate.js';
 import { validateParams } from '../middlewares/validateParams.js';
@@ -14,6 +15,13 @@ import { updateTransactionSchema } from '../validation/transaction/updateTransac
 const router = express.Router();
 
 router.get('/summary/:period', authenticate, getSummaryController);
+
+router.post(
+  '/',
+  authenticate,
+  validateBody(updateTransactionSchema),
+  ctrlWrapper(addTransactionController),
+);
 
 router.patch(
   '/:id',

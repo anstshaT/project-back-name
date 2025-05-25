@@ -30,6 +30,36 @@ export const getSummaryController = async (req, res, next) => {
   }
 };
 
+export const addTransactionController = async (req, res, next) => {
+  const { transactionType, categoryId, summ, date, comment } = req.body;
+
+  if (!req.user || !req.user._id) {
+    return next(createHttpError(401, 'Unauthorized: user not authenticated'));
+  }
+
+  const userId = req.user._id;
+
+  try {
+    const newTransaction = await TransactionsCollection.create({
+      transactionType,
+      categoryId,
+      summ,
+      date: date || new Date(),
+      comment,
+      userId,
+    });
+
+    res.status(201).json({
+      status: 201,
+      message: 'Transaction created successfully',
+      transaction: newTransaction,
+    });
+  } catch (error) {
+    console.log(error);
+    return next(createHttpError(500, 'Server error'));
+  }
+};
+
 export const updateTransactionController = async (req, res, next) => {
   const { id } = req.params;
   const { transactionType, categoryId, summ, date, comment } = req.body;
