@@ -47,7 +47,15 @@ paths:
   /summary/:period:
     get:
       $ref: ../swagger/paths/summery/get.yaml
+  /transactions/{id}:
+    patch:
+      $ref: ../swagger/paths/transactions/patch.yaml
+    delete:
+      $ref: ../swagger/paths/transactions/delete.yaml
 components:
+  schemas:
+    transaction:
+      $ref: ../swagger/components/schemas/transaction.yaml
   securitySchemes:
     bearerAuth:
       type: http
