@@ -1,0 +1,28 @@
+type: object
+required:
+  - incomes
+  - expenses
+properties:
+  incomes:
+    type: array
+    description: 'List of income categories'
+    items:
+      type: string
+    example:
+      - Incomes
+  expenses:
+    type: array
+    description: 'List of expense categories'
+    items:
+      type: string
+    example:
+      - Main expenses
+      - Products
+      - Car
+      - Self care
+      - Child care
+      - Household products
+      - Education
+      - Leisure
+      - Other expenses
+      - Entertainment

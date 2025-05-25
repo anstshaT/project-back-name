@@ -1,0 +1,28 @@
+paths:
+  /api/summary/{period}:
+    get:
+      summary: Get financial summary by period
+      tags:
+        - Summary
+      parameters:
+        - name: period
+          in: path
+          required: true
+          description: Period in format YYYY-MM
+          schema:
+            type: string
+            example: '2025-04'
+        - name: Authorization
+          in: header
+          required: true
+          description: Bearer token
+          schema:
+            type: string
+            example: Bearer your_token
+      responses:
+        '200':
+          description: Summary retrieved successfully
+        '401':
+          description: Unauthorized
+        '500':
+          description: Server error
