@@ -50,6 +50,8 @@ export const addTransactionController = async (req, res, next) => {
       userId,
     });
 
+    await updateUserBalance(userId);
+
     res.status(201).json({
       status: 201,
       message: 'Transaction created successfully',
