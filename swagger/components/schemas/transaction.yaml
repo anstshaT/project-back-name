@@ -5,7 +5,6 @@ required:
   - categoryId
   - summ
   - date
-  - userId
 properties:
   _id:
     type: string
@@ -39,13 +38,3 @@ properties:
     type: string
     description: User ID who owns the transaction
     example: '682bb8d41aabec1ccc21a0a0'
-  createdAt:
-    type: string
-    description: Transaction creation timestamp
-    format: date-time
-    example: '2025-05-25T16:33:36.723Z'
-  updatedAt:
-    type: string
-    description: Transaction last update timestamp
-    format: date-time
-    example: '2025-05-25T16:33:36.723Z'

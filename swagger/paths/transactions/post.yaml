@@ -1,0 +1,69 @@
+tags:
+  - Transactions
+summary: Create transaction
+operationId: createTransaction
+description: 'Create a transaction with payload'
+security:
+  - bearerAuth: []
+parameters:
+  - name: Authorization
+    in: header
+    required: true
+    description: Bearer token
+    schema:
+      type: string
+    example: Bearer your_token
+requestBody:
+  content:
+    application/json:
+      schema:
+        type: object
+        required:
+          - transactionType
+          - categoryId
+          - summ
+        properties:
+          date:
+            description: 'Date of transaction'
+            type: string
+            example: '2025-05-26'
+          transactionType:
+            description: 'Type of transaction'
+            enum: ['income', 'expense']
+            type: string
+            example: 'income'
+          categoryId:
+            description: 'Category of transaction'
+            type: string
+            example: '6832bb88f1080d2226b097a6'
+          summ:
+            description: 'Summa of transaction'
+            type: number
+            example: 0.01
+          comment:
+            description: 'Comment about transaction'
+            type: string
+            example: 'Comment about transaction'
+responses:
+  '201':
+    description: Creates a transaction
+    content:
+      application/json:
+        schema:
+          type: object
+          required:
+            - status
+            - message
+            - data
+          properties:
+            status:
+              type: integer
+              example: 201
+            message:
+              type: string
+              example: Successfully add transaction
+            data:
+              type: object
+              $ref: ../../components/schemas/transaction.yaml
+  '401':
+    $ref: '../../components/responses/401.yaml'
