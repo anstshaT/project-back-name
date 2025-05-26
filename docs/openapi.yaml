@@ -47,11 +47,17 @@ paths:
   /summary/{period}:
     get:
       $ref: ../swagger/paths/summery/get.yaml
+  /transactions:
+    get:
+      $ref: ../swagger/paths/transactions/get.yaml
+    post:
+      $ref: ../swagger/paths/transactions/post.yaml
   /transactions/{id}:
     patch:
       $ref: ../swagger/paths/transactions/patch.yaml
     delete:
       $ref: ../swagger/paths/transactions/delete.yaml
+
 components:
   schemas:
     transaction:

@@ -4,7 +4,7 @@ import { TransactionsCollection } from '../../db/models/transaction.js';
 export const getTransactions = (userId) =>
   TransactionsCollection.find({ userId }).populate({
     path: 'categoryId',
-    select: 'name _id',
+    select: 'name _id type',
   });
 
 export const addTransactions = async (payload) => {
