@@ -44,7 +44,7 @@ paths:
   /categories:
     get:
       $ref: ../swagger/paths/categories/get.yaml
-  /summary/:period:
+  /summary/{period}:
     get:
       $ref: ../swagger/paths/summery/get.yaml
   /transactions/{id}:

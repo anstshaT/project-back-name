@@ -508,7 +508,7 @@
         }
       }
     },
-    "/summary/:period": {
+    "/summary/{period}": {
       "get": {
         "tags": [
           "Summary"
