@@ -36,7 +36,7 @@ export const getSummaryByPeriod = async (userId, period) => {
           categoryId: '$categoryId',
         },
         total: { $sum: '$summ' },
-        title: { $first: '$category.title' },
+        title: { $first: '$category.name' },
       },
     },
   ]);

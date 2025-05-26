@@ -1,9 +1,9 @@
-import express from 'express';
+import { Router } from 'express';
 import { getSummaryController } from '../controllers/transactionsController.js';
 import { authenticate } from '../middlewares/authenticate.js';
 
-const router = express.Router();
+const summaryRouter = Router();
 
-router.get('/summary/:period', authenticate, getSummaryController);
+summaryRouter.get('/:period', authenticate, getSummaryController);
 
-export default router;
+export default summaryRouter;

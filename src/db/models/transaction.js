@@ -22,7 +22,7 @@ const transactionSchema = new Schema(
       min: 0.01,
     },
     date: {
-      type: String,
+      type: Date,
       required: true,
       default: () => new Date().toISOString().split('T')[0],
     },
