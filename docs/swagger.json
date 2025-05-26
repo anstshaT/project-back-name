@@ -637,64 +637,54 @@
         }
       }
     },
-    "/transactions": {
-      "get": {
-        "tags": [
-          "Transactions"
-        ],
-        "summary": "Get list of transactions",
-        "operationId": "getTransactions",
-        "description": "Get list of transactions with this endpoint",
-        "security": [
-          {
-            "bearerAuth": []
-          }
-        ],
-        "parameters": [
-          {
-            "name": "Authorization",
-            "in": "header",
-            "required": true,
-            "description": "Bearer token",
-            "schema": {
-              "type": "string"
-            },
-            "example": "Bearer your_token"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Successfully find transactions!",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "required": [
-                    "transactionType",
-                    "categoryId",
-                    "summ",
-                    "date"
-                  ],
-                  "properties": {
-                    "status": {
-                      "type": "integer",
-                      "example": 200
-                    },
-                    "message": {
-                      "type": "string",
-                      "example": "Successfully find transactions"
-                    },
-                    "data": {
-                      "type": "object",
-                      "required": [
-                        "message"
-                      ],
-                      "properties": {
-                        "data": {
-                          "type": "array",
-                          "items": {
-                            "$ref": "#/components/schemas/transaction"
-                          }
+"/transactions": {
+    "get": {
+      "tags": [
+        "Transactions"
+      ],
+      "summary": "Get list of transactions",
+      "operationId": "getTransactions",
+      "description": "Get list of transactions with this endpoint",
+      "security": [
+        {
+          "bearerAuth": []
+        }
+      ],
+      "parameters": [
+        {
+          "name": "Authorization",
+          "in": "header",
+          "required": true,
+          "description": "Bearer token",
+          "schema": {
+            "type": "string"
+          },
+          "example": "Bearer your_token"
+        }
+      ],
+      "responses": {
+        "200": {
+          "description": "Successfully find transactions!",
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "status": {
+                    "type": "integer",
+                    "example": 200
+                  },
+                  "message": {
+                    "type": "string",
+                    "example": "Successfully find transactions"
+                  },
+                  "data": {
+                    "type": "object",
+                    "properties": {
+                      "data": {
+                        "type": "array",
+                        "items": {
+                          "$ref": "#/components/schemas/transaction"
                         }
                       }
                     }
@@ -702,119 +692,430 @@
                 }
               }
             }
+          }
+        },
+        "401": {
+          "$ref": "#/components/responses/401"
+        }
+      }
+    },
+    "post": {
+      "tags": [
+        "Transactions"
+      ],
+      "summary": "Create transaction",
+      "operationId": "createTransaction",
+      "description": "Create a transaction with payload",
+      "security": [
+        {
+          "bearerAuth": []
+        }
+      ],
+      "parameters": [
+        {
+          "name": "Authorization",
+          "in": "header",
+          "required": true,
+          "description": "Bearer token",
+          "schema": {
+            "type": "string"
           },
-          "401": {
-            "$ref": "#/components/responses/401"
+          "example": "Bearer your_token"
+        }
+      ],
+      "requestBody": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "type": "object",
+              "required": [
+                "transactionType",
+                "categoryId",
+                "summ"
+              ],
+              "properties": {
+                "date": {
+                  "description": "Date of transaction",
+                  "type": "string",
+                  "example": "2025-05-26"
+                },
+                "transactionType": {
+                  "description": "Type of transaction",
+                  "enum": [
+                    "income",
+                    "expense"
+                  ],
+                  "type": "string",
+                  "example": "income"
+                },
+                "categoryId": {
+                  "description": "Category of transaction",
+                  "type": "string",
+                  "example": "6832bb88f1080d2226b097a6"
+                },
+                "summ": {
+                  "description": "Summa of transaction",
+                  "type": "number",
+                  "example": 0.01
+                },
+                "comment": {
+                  "description": "Comment about transaction",
+                  "type": "string",
+                  "example": "Comment about transaction"
+                }
+              }
+            }
           }
         }
       },
-      "post": {
-        "tags": [
-          "Transactions"
-        ],
-        "summary": "Create transaction",
-        "operationId": "createTransaction",
-        "description": "Create a transaction with payload",
-        "security": [
-          {
-            "bearerAuth": []
-          }
-        ],
-        "parameters": [
-          {
-            "name": "Authorization",
-            "in": "header",
-            "required": true,
-            "description": "Bearer token",
-            "schema": {
-              "type": "string"
-            },
-            "example": "Bearer your_token"
-          }
-        ],
-        "requestBody": {
+      "responses": {
+        "201": {
+          "description": "Creates a transaction",
           "content": {
             "application/json": {
               "schema": {
                 "type": "object",
-                "required": [
-                  "transactionType",
-                  "categoryId",
-                  "summ"
-                ],
                 "properties": {
-                  "date": {
-                    "description": "Date of transaction",
-                    "type": "string",
-                    "example": "2025-05-26"
+                  "status": {
+                    "type": "integer",
+                    "example": 201
                   },
-                  "transactionType": {
-                    "description": "Type of transaction",
-                    "enum": [
-                      "income",
-                      "expense"
-                    ],
+                  "message": {
                     "type": "string",
-                    "example": "income"
+                    "example": "Successfully add transaction"
                   },
-                  "categoryId": {
-                    "description": "Category of transaction",
-                    "type": "string",
-                    "example": "6832bb88f1080d2226b097a6"
-                  },
-                  "summ": {
-                    "description": "Summa of transaction",
-                    "type": "number",
-                    "example": 0.01
-                  },
-                  "comment": {
-                    "description": "Comment about transaction",
-                    "type": "string",
-                    "example": "Comment about transaction"
+                  "data": {
+                    "type": "object",
+                    "$ref": "#/components/schemas/transaction"
                   }
                 }
               }
             }
           }
         },
-        "responses": {
-          "201": {
-            "description": "Creates a transaction",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "required": [
-                    "status",
-                    "message",
-                    "data"
+        "401": {
+          "$ref": "#/components/responses/401"
+        }
+      }
+    }
+  },
+  "/transactions/{id}": {
+    "patch": {
+      "tags": [
+        "Transactions"
+      ],
+      "summary": "Update a transaction",
+      "operationId": "updateTransaction",
+      "description": "Update an existing transaction with new details",
+      "security": [
+        {
+          "bearerAuth": []
+        }
+      ],
+      "parameters": [
+        {
+          "name": "id",
+          "in": "path",
+          "required": true,
+          "description": "Transaction ID to update",
+          "schema": {
+            "type": "string",
+            "example": "68334660433a81c02a6e29ed"
+          }
+        }
+      ],
+      "requestBody": {
+        "required": true,
+        "content": {
+          "application/json": {
+            "schema": {
+              "type": "object",
+              "properties": {
+                "transactionType": {
+                  "type": "string",
+                  "enum": [
+                    "income",
+                    "expense"
                   ],
-                  "properties": {
-                    "status": {
-                      "type": "integer",
-                      "example": 201
-                    },
-                    "message": {
-                      "type": "string",
-                      "example": "Successfully add transaction"
-                    },
-                    "data": {
-                      "type": "object",
-                      "$ref": "#/components/schemas/transaction"
-                    }
+                  "example": "expense"
+                },
+                "categoryId": {
+                  "type": "string",
+                  "example": "6830eb9602da869876fbfdd3"
+                },
+                "summ": {
+                  "type": "number",
+                  "minimum": 0,
+                  "example": 50
+                },
+                "date": {
+                  "type": "string",
+                  "format": "date-time",
+                  "example": "2025-05-25T16:33:36.722Z"
+                },
+                "comment": {
+                  "type": "string",
+                  "maxLength": 300,
+                  "example": "Grocery shopping"
+                }
+              }
+            }
+          }
+        }
+      },
+      "responses": {
+        "200": {
+          "description": "Transaction updated successfully",
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "status": {
+                    "type": "integer",
+                    "example": 200
+                  },
+                  "message": {
+                    "type": "string",
+                    "example": "Transaction updated successfully"
+                  },
+                  "transaction": {
+                    "$ref": "#/components/schemas/transaction"
                   }
                 }
               }
             }
-          },
-          "401": {
-            "$ref": "#/components/responses/401"
+          }
+        },
+        "401": {
+          "$ref": "#/components/responses/401-session"
+        },
+        "404": {
+          "description": "Transaction not found",
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "status": {
+                    "type": "integer",
+                    "example": 404
+                  },
+                  "message": {
+                    "type": "string",
+                    "example": "Transaction not found"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "delete": {
+      "tags": [
+        "Transactions"
+      ],
+      "summary": "Delete a transaction",
+      "operationId": "deleteTransaction",
+      "description": "Delete an existing transaction",
+      "security": [
+        {
+          "bearerAuth": []
+        }
+      ],
+      "parameters": [
+        {
+          "name": "id",
+          "in": "path",
+          "required": true,
+          "description": "Transaction ID to delete",
+          "schema": {
+            "type": "string",
+            "example": "68334660433a81c02a6e29ed"
+          }
+        }
+      ],
+      "responses": {
+        "200": {
+          "description": "Transaction deleted successfully",
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "status": {
+                    "type": "integer",
+                    "example": 200
+                  },
+                  "message": {
+                    "type": "string",
+                    "example": "Transaction deleted successfully"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "401": {
+          "$ref": "#/components/responses/401-session"
+        },
+        "404": {
+          "description": "Transaction not found",
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "status": {
+                    "type": "integer",
+                    "example": 404
+                  },
+                  "message": {
+                    "type": "string",
+                    "example": "Transaction not found"
+                  }
+                }
+              }
+            }
           }
         }
       }
     }
   },
   "components": {
+    "schemas": {
+      "transaction": {
+        "type": "object",
+        "required": [
+          "_id",
+          "transactionType",
+          "categoryId",
+          "summ",
+          "date",
+          "userId"
+        ],
+        "properties": {
+          "_id": {
+            "type": "string",
+            "description": "Transaction ID",
+            "example": "68334660433a81c02a6e29ed"
+          },
+          "transactionType": {
+            "type": "string",
+            "description": "Type of transaction",
+            "enum": [
+              "income",
+              "expense"
+            ],
+            "example": "expense"
+          },
+          "categoryId": {
+            "type": "string",
+            "description": "Category ID reference",
+            "example": "6830eb9602da869876fbfdd3"
+          },
+          "summ": {
+            "type": "number",
+            "description": "Transaction amount",
+            "minimum": 0,
+            "example": 50
+          },
+          "date": {
+            "type": "string",
+            "description": "Transaction date",
+            "format": "date-time",
+            "example": "2025-05-25T16:33:36.722Z"
+          },
+          "comment": {
+            "type": "string",
+            "description": "Optional transaction comment",
+            "maxLength": 300,
+            "example": "Grocery shopping"
+          },
+          "userId": {
+            "type": "string",
+            "description": "User ID who owns the transaction",
+            "example": "682bb8d41aabec1ccc21a0a0"
+          },
+          "createdAt": {
+            "type": "string",
+            "description": "Transaction creation timestamp",
+            "format": "date-time",
+            "example": "2025-05-25T16:33:36.723Z"
+          },
+          "updatedAt": {
+            "type": "string",
+            "description": "Transaction last update timestamp",
+            "format": "date-time",
+            "example": "2025-05-25T16:33:36.723Z"
+          }
+        }
+      },
+      "user": {
+        "type": "object",
+        "required": [
+          "name",
+          "email",
+          "id"
+        ],
+        "properties": {
+          "name": {
+            "description": "User name",
+            "type": "string",
+            "example": "Anna"
+          },
+          "email": {
+            "description": "User email",
+            "type": "string",
+            "example": "anna@mail.com"
+          },
+          "id": {
+            "description": "User id",
+            "type": "string",
+            "example": "681a09af61bdc00bfe787f44"
+          }
+        }
+      },
+      "categories": {
+        "type": "object",
+        "required": [
+          "incomes",
+          "expenses"
+        ],
+        "properties": {
+          "incomes": {
+            "type": "array",
+            "description": "List of income categories",
+            "items": {
+              "type": "string"
+            },
+            "example": [
+              "Incomes"
+            ]
+          },
+          "expenses": {
+            "type": "array",
+            "description": "List of expense categories",
+            "items": {
+              "type": "string"
+            },
+            "example": [
+              "Main expenses",
+              "Products",
+              "Car",
+              "Self care",
+              "Child care",
+              "Household products",
+              "Education",
+              "Leisure",
+              "Other expenses",
+              "Entertainment"
+            ]
+          }
+        }
+      }
+    },
     "securitySchemes": {
       "bearerAuth": {
         "type": "http",

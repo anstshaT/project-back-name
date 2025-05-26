@@ -1,0 +1,44 @@
+tags:
+  - Transactions
+summary: Delete a transaction
+operationId: deleteTransaction
+description: Delete an existing transaction
+security:
+  - bearerAuth: []
+parameters:
+  - name: id
+    in: path
+    required: true
+    description: Transaction ID to delete
+    schema:
+      type: string
+      example: '68334660433a81c02a6e29ed'
+responses:
+  '200':
+    description: Transaction deleted successfully
+    content:
+      application/json:
+        schema:
+          type: object
+          properties:
+            status:
+              type: integer
+              example: 200
+            message:
+              type: string
+              example: 'Transaction deleted successfully'
+  '401':
+    $ref: '../../components/responses/auth/401-session.yaml'
+  '404':
+    description: Transaction not found
+    content:
+      application/json:
+        schema:
+          type: object
+          properties:
+            status:
+              type: integer
+              example: 404
+            message:
+              type: string
+              example: 'Transaction not found'
