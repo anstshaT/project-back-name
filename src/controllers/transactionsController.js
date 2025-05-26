@@ -1,6 +1,7 @@
 import createHttpError from 'http-errors';
 import { getSummaryByPeriod } from '../services/summary.js';
 import { TransactionsCollection } from '../db/models/transaction.js';
+import { updateUserBalance } from '../services/transactions/udateBalanse.js';
 
 export const getSummaryController = async (req, res, next) => {
   const { period } = req.params;
@@ -95,6 +96,8 @@ export const updateTransactionController = async (req, res, next) => {
       return next(createHttpError(404, 'Transaction not found'));
     }
 
+    await updateUserBalance(userId);
+
     res.json({
       status: 200,
       message: 'Transaction updated successfully',
@@ -124,6 +127,8 @@ export const deleteTransactionController = async (req, res, next) => {
     if (!transaction) {
       return next(createHttpError(404, 'Transaction not found'));
     }
+
+    await updateUserBalance(userId);
 
     res.json({
       status: 200,
