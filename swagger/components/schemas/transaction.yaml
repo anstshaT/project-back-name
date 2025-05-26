@@ -1,0 +1,44 @@
+type: object
+required:
+  - _id
+  - transactionType
+  - categoryId
+  - summ
+  - date
+properties:
+  _id:
+    type: string
+    description: 'Id of transaction'
+    example:
+      - '6832bb88f1080d2226b097a6'
+  transactionType:
+    type: string
+    description: 'Type of transaction'
+    enum: ['income', 'expense']
+    example:
+      - 'income'
+  categoryId:
+    type: string
+    description: 'Category of transaction'
+    example:
+      - '6832bb88f1080d2226b097a6'
+  summ:
+    type: number
+    description: 'Summa of transaction'
+    example:
+      - 0.01
+  date:
+    type: string
+    description: 'Date of transaction'
+    example:
+      - '2025-05-26'
+  comment:
+    type: string
+    description: 'Comment about transaction'
+    example:
+      - 'Comment about transaction'
+  userId:
+    type: string
+    description: 'Id of user'
+    example:
+      - '6832bb88f1080d2226b097a6'
