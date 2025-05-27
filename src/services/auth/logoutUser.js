@@ -1,5 +1,12 @@
-import { SessionCollection } from '../../db/models/Session.js';
+
+import { SessionsCollection } from '../db/models/Session.js';
+import { ObjectId } from 'mongodb';
 
 export const logoutUser = async (sessionId) => {
-  await SessionCollection.deleteOne({ _id: sessionId });
+  try {
+    await SessionsCollection.deleteOne({ _id: new ObjectId(sessionId) });
+  } catch (err) {
+    console.error(`Failed to delete session ${sessionId}:`, err);
+    throw new Error('Logout failed');
+  }
 };
