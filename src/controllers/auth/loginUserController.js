@@ -1,4 +1,4 @@
-import { ONE_DAY } from '../../constants/index.js';
+import { THREE_DAY } from '../../constants/index.js';
 import { loginUser } from '../../services/auth/loginUser.js';
 
 export const loginUserController = async (req, res) => {
@@ -6,11 +6,11 @@ export const loginUserController = async (req, res) => {
 
   res.cookie('refreshToken', session.refreshToken, {
     httpOnly: true,
-    expires: new Date(Date.now() + ONE_DAY),
+    expires: new Date(Date.now() + THREE_DAY),
   });
   res.cookie('sessionId', session._id, {
     httpOnly: true,
-    expires: new Date(Date.now() + ONE_DAY),
+    expires: new Date(Date.now() + THREE_DAY),
   });
 
   res.json({

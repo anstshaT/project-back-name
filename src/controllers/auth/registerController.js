@@ -1,7 +1,7 @@
 import { registerUser } from '../../services/auth/registerService.js';
 import { SessionCollection } from '../../db/models/Session.js';
 import { randomBytes } from 'crypto';
-import { FIFTEEN_MINUTES, ONE_DAY } from '../../constants/index.js';
+import { THREE_DAY, ONE_DAY } from '../../constants/index.js';
 
 export const registerController = async (req, res, next) => {
   try {
@@ -14,8 +14,8 @@ export const registerController = async (req, res, next) => {
       userId: user.id,
       accessToken,
       refreshToken,
-      accessTokenValidUntil: new Date(Date.now() + FIFTEEN_MINUTES),
-      refreshTokenValidUntil: new Date(Date.now() + ONE_DAY),
+      accessTokenValidUntil: new Date(Date.now() + ONE_DAY),
+      refreshTokenValidUntil: new Date(Date.now() + THREE_DAY),
     });
 
     res.status(201).json({
