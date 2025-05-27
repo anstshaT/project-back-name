@@ -1,0 +1,40 @@
+type: object
+required:
+  - _id
+  - transactionType
+  - categoryId
+  - summ
+  - date
+properties:
+  _id:
+    type: string
+    description: Transaction ID
+    example: '68334660433a81c02a6e29ed'
+  transactionType:
+    type: string
+    description: Type of transaction
+    enum: [income, expense]
+    example: 'expense'
+  categoryId:
+    type: string
+    description: Category ID reference
+    example: '6830eb9602da869876fbfdd3'
+  summ:
+    type: number
+    description: Transaction amount
+    minimum: 0
+    example: 50
+  date:
+    type: string
+    description: Transaction date
+    format: date-time
+    example: '2025-05-25T16:33:36.722Z'
+  comment:
+    type: string
+    description: Optional transaction comment
+    maxLength: 300
+    example: 'Grocery shopping'
+  userId:
+    type: string
+    description: User ID who owns the transaction
+    example: '682bb8d41aabec1ccc21a0a0'

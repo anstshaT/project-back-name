@@ -1,0 +1,68 @@
+openapi: 3.1.0
+info:
+  version: 1.0.0
+  title: Money Guard
+  license:
+    name: Apache 2.0
+    url: http://www.apache.org/licenses/LICENSE-2.0.html
+  description:
+    Money Guard is a personal finance tracking application. It allows users to create, edit, and view transactions,
+    analyze statistics, and check their current balance. The app uses secure authentication with JWT tokens.
+tags:
+  - name: Auth
+    description: User registration, login, token refresh, and logout functionality
+  - name: Transactions
+    description: Creating, editing, deleting, and retrieving financial transactions
+  - name: User
+    description: Retrieving user information and account balance
+  - name: Currency
+    description: Fetching current exchange rates from the Monobank API
+  - name: Categories
+    description: Viewing predefined income and expense categories
+servers:
+  - url: https://moneyguard-app.onrender.com
+  - url: http://localhost:3000
+paths:
+  /auth/login:
+    post:
+      $ref: ../swagger/paths/auth/login.yaml
+  /auth/logout:
+    post:
+      $ref: ../swagger/paths/auth/logout.yaml
+  /auth/register:
+    post:
+      $ref: ../swagger/paths/auth/register.yaml
+  /auth/refresh-session:
+    post:
+      $ref: ../swagger/paths/auth/refresh-session.yaml
+  /users/me:
+    get:
+      $ref: ../swagger/paths/user/get.yaml
+  /users/user/update/{userId}:
+    patch:
+      $ref: ../swagger/paths/user/patch.yaml
+  /categories:
+    get:
+      $ref: ../swagger/paths/categories/get.yaml
+  /summary/{period}:
+    get:
+      $ref: ../swagger/paths/summery/get.yaml
+  /transactions:
+    get:
+      $ref: ../swagger/paths/transactions/get.yaml
+    post:
+      $ref: ../swagger/paths/transactions/post.yaml
+  /transactions/{id}:
+    patch:
+      $ref: ../swagger/paths/transactions/patch.yaml
+    delete:
+      $ref: ../swagger/paths/transactions/delete.yaml
+
+components:
+  schemas:
+    transaction:
+      $ref: ../swagger/components/schemas/transaction.yaml
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
