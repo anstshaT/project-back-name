@@ -1,5 +1,5 @@
 
-import { SessionsCollection } from '../db/models/Session.js';
+import { SessionCollection } from '../../db/models/Session.js';
 import { ObjectId } from 'mongodb';
 
 export const logoutUser = async (sessionId) => {
