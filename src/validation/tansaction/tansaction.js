@@ -8,7 +8,7 @@ export const tansactionAddSchema = Joi.object({
     }),
   transactionType: Joi.string().required().valid('income', 'expense'),
   categoryId: Joi.string().pattern(/^[0-9a-fA-F]{24}$/),
-  comment: Joi.string().max(192),
+  comment: Joi.string().max(27),
   summ: Joi.number().required().precision(2).min(0.01).max(1000000),
   userId: Joi.string()
     .pattern(/^[0-9a-fA-F]{24}$/)

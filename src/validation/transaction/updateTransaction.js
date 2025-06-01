@@ -13,5 +13,5 @@ export const updateTransactionSchema = Joi.object({
   categoryId: Joi.string().custom(validateObjectId, 'valid MongoDB id'),
   summ: Joi.number().min(0),
   date: Joi.date(),
-  comment: Joi.string().max(300).allow('', null),
+  comment: Joi.string().max(27).allow('', null),
 });

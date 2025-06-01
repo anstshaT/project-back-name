@@ -16,5 +16,5 @@ export const createTransactionSchema = Joi.object({
     }),
   summ: Joi.number().min(0.01).required(),
   date: Joi.date().iso(),
-  comment: Joi.string().max(300),
+  comment: Joi.string().max(27),
 });
